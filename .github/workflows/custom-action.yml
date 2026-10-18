@@ -1,0 +1,20 @@
+
+name: Custom Action Test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run custom greeting action
+        id: greeting
+        uses: YOUR-USERNAME/hello-world-action@v1.0.0
+        with:
+          name: Student
+
+      - name: Display action output
+        run: echo "Output: ${{ steps.greeting.outputs.greeting }}"
