@@ -12,9 +12,11 @@ jobs:
     steps:
       - name: Run custom greeting action
         id: greeting
-        uses: YOUR-USERNAME/hello-world-action@v1.0.0
+        uses: Ahmad-Tariq-1/hello-world-action@v1.0.0
         with:
           name: Student
 
       - name: Display action output
-        run: echo "Output: ${{ steps.greeting.outputs.greeting }}"
+        env:
+          GREETING: ${{ steps.greeting.outputs.greeting }}
+        run: 'echo "Output: $GREETING"'
