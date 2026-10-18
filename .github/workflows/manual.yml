@@ -1,0 +1,28 @@
+
+name: Manual Greeting Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Enter your name"
+        required: true
+        type: string
+      greeting:
+        description: "Choose a greeting"
+        required: true
+        default: "Hello"
+        type: string
+      data:
+        description: "Enter any message"
+        required: false
+        type: string
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display greeting
+        run: |
+          echo "${{ inputs.greeting }}, ${{ inputs.name }}!"
+          echo "Message: ${{ inputs.data }}"
