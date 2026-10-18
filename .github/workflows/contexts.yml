@@ -1,0 +1,33 @@
+
+name: Contexts and Conditions
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  APP_NAME: Student Demo
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display contexts
+        run: |
+          echo "Actor: ${{ github.actor }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Operating System: ${{ runner.os }}"
+          echo "App: ${{ env.APP_NAME }}"
+
+      - name: Check successful execution
+        if: success()
+        run: echo "Previous steps succeeded!"
+
+      - name: Check actor
+        if: contains(github.actor, 'a')
+        run: echo "Actor name contains the letter a"
+
+      - name: Always run this step
+        if: always()
+        run: echo "Final step executed"
