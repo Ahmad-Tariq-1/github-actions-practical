@@ -1,0 +1,16 @@
+
+name: External Webhook Workflow
+
+on:
+  repository_dispatch:
+    types: [custom-webhook]
+
+jobs:
+  webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show webhook details
+        run: |
+          echo "External webhook received!"
+          echo "Event: ${{ github.event.action }}"
+          echo "Sender: ${{ github.actor }}"
